@@ -1,15 +1,12 @@
 import 'dart:developer';
-
 import 'package:chatgpt_course/constants/constants.dart';
 import 'package:chatgpt_course/providers/chats_provider.dart';
-import 'package:chatgpt_course/services/services.dart';
 import 'package:chatgpt_course/widgets/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/models_provider.dart';
-import '../services/assets_manager.dart';
 import '../widgets/text_widget.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -49,19 +46,27 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(AssetsManager.openaiLogo),
+        title: Row(
+          children: [
+            Container(
+              alignment: Alignment.topLeft,
+              width: MediaQuery.sizeOf(context).width / 7,
+            ),
+            Container(
+              margin: const EdgeInsets.all(7),
+              padding: EdgeInsets.all(5),
+              child: FloatingActionButton(
+                  backgroundColor: const Color.fromARGB(185, 6, 97, 53),
+                  onPressed: null,
+                  child: Lottie.network(
+                      'https://lottie.host/de3aaf0c-2811-4f40-a3f9-48c823065098/RusFq5sBAH.json')),
+            ),
+            Container(
+              // alignment: Alignment.topLeft,
+              child: Text('Minnie-AI'),
+            ),
+          ],
         ),
-        title: const Text("ChatGPT"),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await Services.showModalSheet(context: context);
-            },
-            icon: const Icon(Icons.more_vert_rounded, color: Colors.white),
-          ),
-        ],
       ),
       body: SafeArea(
         child: Column(
@@ -83,7 +88,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             if (_isTyping) ...[
               const SpinKitThreeBounce(
-                color: Colors.white,
+                color: Color.fromARGB(255, 255, 255, 255),
                 size: 18,
               ),
             ],
@@ -98,6 +103,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   children: [
                     Expanded(
                       child: TextField(
+                        maxLines: null,
                         focusNode: focusNode,
                         style: const TextStyle(color: Colors.white),
                         controller: textEditingController,
@@ -107,7 +113,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               chatProvider: chatProvider);
                         },
                         decoration: const InputDecoration.collapsed(
-                            hintText: "How can I help you",
+                            hintText: "Lets find the answers",
                             hintStyle: TextStyle(color: Colors.grey)),
                       ),
                     ),
@@ -134,7 +140,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void scrollListToEND() {
     _listScrollController.animateTo(
         _listScrollController.position.maxScrollExtent,
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 3),
         curve: Curves.easeOut);
   }
 

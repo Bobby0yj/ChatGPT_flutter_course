@@ -1,88 +1,190 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:chatgpt_course/constants/constants.dart';
 import 'package:chatgpt_course/services/assets_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
-import 'text_widget.dart';
-
-class ChatWidget extends StatelessWidget {
-  const ChatWidget(
-      {super.key,
-      required this.msg,
-      required this.chatIndex,
-      this.shouldAnimate = false});
+class ChatWidget extends StatefulWidget {
+  const ChatWidget({
+    Key? key,
+    required this.msg,
+    required this.chatIndex,
+    this.shouldAnimate = false,
+  }) : super(key: key);
 
   final String msg;
   final int chatIndex;
   final bool shouldAnimate;
+
+  @override
+  _ChatWidgetState createState() => _ChatWidgetState();
+}
+
+class _ChatWidgetState extends State<ChatWidget>
+    with SingleTickerProviderStateMixin {
+  final FlutterTts flutterTts = FlutterTts();
+  bool isSpeaking = false;
+  bool isMicAnimating = false;
+  late AnimationController micAnimationController;
+  late Animation<double> micAnimation;
+  TextEditingController textEditingController = TextEditingController();
+  bool isEditing = false;
+  Future<void> initializeTts() async {
+    await flutterTts.setLanguage('en-US');
+  }
+
+  Future<void> speakText(String text) async {
+    if (isSpeaking) {
+      await flutterTts.stop();
+      setState(() {
+        isSpeaking = false;
+        isMicAnimating = false;
+      });
+    } else {
+      await flutterTts.speak(text);
+      setState(() {
+        isSpeaking = true;
+        isMicAnimating = true;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    textEditingController.text = widget.msg;
+    initializeTts();
+    micAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    micAnimation = Tween<double>(begin: 1.0, end: 1.3).animate(
+      CurvedAnimation(
+        parent: micAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    flutterTts.stop();
+    micAnimationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Material(
-          color: chatIndex == 0 ? scaffoldBackgroundColor : cardColor,
+          color: widget.chatIndex == 0
+              ? const Color.fromARGB(255, 56, 54, 97)
+              : Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  chatIndex == 0
-                      ? AssetsManager.userImage
-                      : AssetsManager.botImage,
-                  height: 30,
-                  width: 30,
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Image.asset(
+                    widget.chatIndex == 0
+                        ? AssetsManager.userImage
+                        : AssetsManager.botImage,
+                    height: 30,
+                    width: 30,
+                  ),
                 ),
-                const SizedBox(
-                  width: 8,
-                ),
+                const SizedBox(width: 8),
                 Expanded(
-                  child: chatIndex == 0
-                      ? TextWidget(
-                          label: msg,
-                        )
-                      : shouldAnimate
-                          ? DefaultTextStyle(
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16),
-                              child: AnimatedTextKit(
-                                  isRepeatingAnimation: false,
-                                  repeatForever: false,
-                                  displayFullTextOnTap: true,
-                                  totalRepeatCount: 1,
-                                  animatedTexts: [
-                                    TyperAnimatedText(
-                                      msg.trim(),
+                  child: widget.chatIndex == 0
+                      ? GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isEditing = true;
+                            });
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: const EdgeInsets.all(12),
+                            child: isEditing
+                                ? TextField(
+                                    controller: textEditingController,
+                                    style: const TextStyle(
+                                      color: Color.fromARGB(255, 255, 255, 255),
                                     ),
-                                  ]),
+                                  )
+                                : Text(
+                                    widget.msg,
+                                    style: const TextStyle(
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                    ),
+                                  ),
+                          ),
+                        )
+                      : widget.shouldAnimate
+                          ? GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding: const EdgeInsets.all(10),
+                                child: Container(
+                                  child: DefaultTextStyle(
+                                    style: const TextStyle(
+                                      color: Color.fromARGB(255, 15, 62, 27),
+                                      fontSize: 16,
+                                    ),
+                                    child: AnimatedTextKit(
+                                      isRepeatingAnimation: false,
+                                      repeatForever: false,
+                                      displayFullTextOnTap: true,
+                                      totalRepeatCount: 1,
+                                      animatedTexts: [
+                                        TyperAnimatedText(
+                                          widget.msg.trim(),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                             )
-                          : Text(
-                              msg.trim(),
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16),
+                          : GestureDetector(
+                              onTap: () {},
+                              child: SelectableText(
+                                widget.msg.trim().toString(),
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 217, 38, 38),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                ),
+                              ),
                             ),
                 ),
-                chatIndex == 0
+                widget.chatIndex == 0
                     ? const SizedBox.shrink()
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.thumb_up_alt_outlined,
-                            color: Colors.white,
+                        children: [
+                          const SizedBox(width: 5),
+                          GestureDetector(
+                            onTap: () {
+                              speakText(widget.msg.trim());
+                            },
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              transform: Matrix4.identity()
+                                ..scale(
+                                    isMicAnimating ? micAnimation.value : 1.0),
+                              child: Icon(
+                                isSpeaking ? Icons.mic : Icons.mic_off,
+                                color: isSpeaking
+                                    ? Color.fromARGB(255, 5, 80, 4)
+                                    : const Color.fromARGB(255, 97, 97, 97),
+                              ),
+                            ),
                           ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.thumb_down_alt_outlined,
-                            color: Colors.white,
-                          )
                         ],
                       ),
               ],
