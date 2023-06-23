@@ -6,7 +6,8 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({required Key key}) : super(key: key);
+  const LoginScreen({required Key key, required String title})
+      : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -53,14 +54,14 @@ class _LoginScreenState extends State<LoginScreen> {
             return const MyHomePage(title: 'title');
           } else {
             return Scaffold(
-              backgroundColor: const Color.fromARGB(255, 3, 34, 60),
+              backgroundColor: Color.fromARGB(255, 27, 28, 28),
               body: SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
                       height: MediaQuery.of(context).size.height / 2,
                       width: MediaQuery.of(context).size.width,
-                      color: const Color.fromARGB(255, 18, 4, 53),
+                      color: Color.fromARGB(255, 26, 26, 26),
                       child: Center(
                         child: Container(
                           child: Lottie.network(
@@ -72,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       height: MediaQuery.of(context).size.height / 2,
                       width: MediaQuery.of(context).size.width,
-                      color: const Color.fromARGB(255, 18, 4, 53),
+                      color: Color.fromARGB(255, 26, 26, 26),
                       child: Column(
                         children: [
                           Row(
@@ -86,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 child: FloatingActionButton(
                                   backgroundColor:
-                                      const Color.fromARGB(151, 43, 25, 79),
+                                      Color.fromARGB(150, 32, 31, 33),
                                   onPressed: () {},
                                   child: const Icon(
                                     Icons.person,
@@ -99,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 45,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: const Color.fromARGB(151, 43, 25, 79),
+                                  color: Color.fromARGB(150, 48, 48, 48),
                                 ),
                                 child: TextField(
                                   style: const TextStyle(
@@ -133,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 child: FloatingActionButton(
                                   backgroundColor:
-                                      const Color.fromARGB(151, 43, 25, 79),
+                                      Color.fromARGB(150, 32, 31, 33),
                                   onPressed: () {
                                     setState(() {
                                       showpassword = !showpassword;
@@ -143,7 +144,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     showpassword
                                         ? Icons.lock_outline
                                         : Icons.lock_open,
-                                    color: const Color.fromARGB(255, 6, 133, 40),
+                                    color:
+                                        const Color.fromARGB(255, 6, 133, 40),
                                   ),
                                 ),
                               ),
@@ -153,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 margin: const EdgeInsets.only(top: 27),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: const Color.fromARGB(151, 43, 25, 79),
+                                  color: Color.fromARGB(150, 48, 48, 48),
                                 ),
                                 child: TextField(
                                   style: const TextStyle(
@@ -187,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: const Text(
                                 "Forgot Password ?",
                                 style: TextStyle(
-                                  color: Color.fromARGB(255, 6, 133, 40),
+                                  color: Color.fromARGB(255, 141, 141, 141),
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -205,11 +207,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 child: FloatingActionButton(
                                   backgroundColor:
-                                      const Color.fromARGB(151, 43, 25, 79),
+                                      Color.fromARGB(150, 32, 31, 33),
                                   onPressed: () {},
                                   child: const Icon(
                                     Icons.arrow_right_alt_sharp,
-                                    color: Color.fromARGB(255, 6, 133, 40),
+                                    color: Color.fromARGB(255, 255, 255, 255),
                                   ),
                                 ),
                               ),

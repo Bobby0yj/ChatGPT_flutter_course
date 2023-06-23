@@ -43,13 +43,17 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: scaffoldBackgroundColor,
+          brightness: Brightness.dark,
           appBarTheme: AppBarTheme(
             color: cardColor,
           ),
         ),
-         home: isLoggedIn
+        home: isLoggedIn
             ? const MyHomePage(title: '')
-            : LoginScreen(key: Key('login_screen')),
+            : LoginScreen(
+                key: Key('login_screen'),
+                title: '',
+              ),
         routes: {
           '/signup': (context) => Signup(),
         },
@@ -75,7 +79,10 @@ class _MyImtrState extends State<MyImtr> {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context)?.pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const LoginScreen(key: Key('login_screen')),
+          builder: (context) => const LoginScreen(
+            key: Key('login_screen'),
+            title: '',
+          ),
         ),
       );
     });

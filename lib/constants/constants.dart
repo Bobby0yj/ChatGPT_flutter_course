@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-Color scaffoldBackgroundColor = Color.fromRGBO(22, 18, 68, 1);
+Color scaffoldBackgroundColor = Color.fromRGBO(31, 31, 32, 1);
 
-Color cardColor = Color.fromRGBO(1, 8, 50, 1);
+Color cardColor = Color.fromRGBO(21, 21, 21, 1);
 
 // List<String> models = [
 //   'Model1',

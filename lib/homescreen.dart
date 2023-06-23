@@ -2,8 +2,11 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:chatgpt_course/main.dart';
+import 'package:chatgpt_course/myapp.dart';
 import 'package:chatgpt_course/registration/login.dart';
 import 'package:chatgpt_course/registration/signup.dart';
+import 'package:chatgpt_course/screens%20copy/notes.dart';
 import 'package:chatgpt_course/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -87,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       MaterialPageRoute(
           builder: (context) => LoginScreen(
                 key: Key('login screen'),
+                title: '',
               )),
       (Route<dynamic> route) => false, // Clear the navigation stack
     );
@@ -132,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Image to Text Recognition'),
-          backgroundColor: Color.fromARGB(255, 19, 1, 63),
+          backgroundColor: Color.fromARGB(234, 26, 25, 27),
           actions: [
             Container(
               child: PopupMenuButton(
@@ -144,7 +148,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: null,
                           child: Text(
                             'FeedBack',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                           )),
                     ),
                     const PopupMenuItem(
@@ -153,7 +158,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: null,
                           child: Text(
                             'Share The App',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
                           )),
                     ),
                     const PopupMenuItem(
@@ -161,7 +167,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: TextButton(
                           onPressed: null,
                           child: Text('Help',
-                              style: TextStyle(color: Colors.black))),
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 255, 255, 255)))),
                     ),
                   ];
                 },
@@ -170,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         drawer: Drawer(
-          backgroundColor: Color.fromARGB(255, 18, 4, 53),
+          backgroundColor: Color.fromARGB(255, 22, 21, 22),
           child: Column(
             children: [
               Column(
@@ -191,7 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           top: 130,
                           left: 90,
                           child: FloatingActionButton(
-                            backgroundColor: Color.fromARGB(201, 38, 1, 84),
+                            backgroundColor: Color.fromARGB(198, 255, 255, 255),
                             onPressed: () {},
                             child: Icon(
                               Icons.add,
@@ -257,7 +264,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                             Colors.transparent)),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ChatScreen()));
+                      });
+                    },
                     child: Row(
                       children: [
                         Container(
@@ -286,7 +300,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                             Colors.transparent)),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Notesapp(
+                                      key: Key(''),
+                                    )));
+                      });
+                    },
                     child: Row(
                       children: [
                         Container(
@@ -488,7 +511,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                       height: MediaQuery.sizeOf(context).height / 14.9,
                       width: MediaQuery.sizeOf(context).width,
-                      color: Color.fromARGB(255, 8, 2, 53),
+                      color: Color.fromARGB(255, 29, 29, 31),
                       child: Container(
                         child: ElevatedButton(
                           style: ButtonStyle(
@@ -505,7 +528,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: Color.fromARGB(255, 18, 4, 53),
             child: Column(
               children: [
                 // if (textScanning) const CircularProgressIndicator(),
@@ -513,8 +535,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     alignment: Alignment.center,
                     width: MediaQuery.sizeOf(context).width,
-                    color: const Color.fromARGB(
-                        97, 26, 84, 177), // Set the desired background color
+                    // Set the desired background color
                     child: const CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(
                             Color.fromARGB(255, 255, 255, 255))),
@@ -529,7 +550,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Container(
                           height: MediaQuery.sizeOf(context).height / 7,
                           width: MediaQuery.sizeOf(context).width,
-                          color: Color.fromARGB(255, 18, 4, 53),
+                          color: Color.fromARGB(255, 21, 21, 21),
                           padding: const EdgeInsets.all(25),
                           child: Center(
                               child: const Text(
@@ -540,7 +561,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Container(
                           height: MediaQuery.sizeOf(context).height / 5,
                           width: MediaQuery.sizeOf(context).width,
-                          color: Color.fromARGB(255, 18, 4, 53),
+                          color: Color.fromARGB(255, 21, 21, 21),
                           padding: EdgeInsets.all(30),
                           child: Container(
                             alignment: Alignment.center,
@@ -586,13 +607,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 4,
                               width: MediaQuery.of(context).size.width / 2,
                               padding: const EdgeInsets.all(25),
                               child: FloatingActionButton(
                                 backgroundColor:
-                                    Color.fromARGB(117, 23, 23, 74),
+                                    Color.fromARGB(117, 30, 30, 33),
                                 onPressed: () {
                                   getImage(ImageSource.camera);
                                 },
@@ -604,13 +625,13 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 4,
                               width: MediaQuery.of(context).size.width / 2,
                               padding: const EdgeInsets.all(25),
                               child: FloatingActionButton(
                                   backgroundColor:
-                                      Color.fromARGB(117, 23, 23, 74),
+                                      Color.fromARGB(117, 30, 30, 33),
                                   onPressed: () {
                                     getImage(ImageSource.gallery);
                                   },
@@ -625,18 +646,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                               padding: const EdgeInsets.all(10),
                               child: FloatingActionButton(
                                   backgroundColor:
-                                      Color.fromARGB(117, 23, 23, 74),
+                                      Color.fromARGB(117, 30, 30, 33),
                                   onPressed: () {},
                                   child: const Icon(
                                     Icons.crop,
@@ -645,28 +666,37 @@ class _MyHomePageState extends State<MyHomePage> {
                                   )),
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                               padding: const EdgeInsets.all(10),
                               child: FloatingActionButton(
                                   backgroundColor:
-                                      Color.fromARGB(117, 23, 23, 74),
-                                  onPressed: () {},
-                                  child: const Icon(
-                                    Icons.picture_as_pdf_outlined,
+                                      Color.fromARGB(117, 30, 30, 33),
+                                  onPressed: () {
+                                    setState(() {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Notesapp(
+                                                    key: Key(''),
+                                                  )));
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.note,
                                     size: 25,
                                     color: Colors.white,
                                   )),
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                               padding: const EdgeInsets.all(10),
                               child: FloatingActionButton(
                                   backgroundColor:
-                                      Color.fromARGB(117, 23, 23, 74),
+                                      Color.fromARGB(117, 30, 30, 33),
                                   onPressed: () {},
                                   child: const Icon(
                                     Icons.mic,
@@ -675,7 +705,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   )),
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                             ),
@@ -684,24 +714,24 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           children: [
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                               padding: const EdgeInsets.all(10),
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                               padding: const EdgeInsets.all(10),
                               child: FloatingActionButton(
                                   backgroundColor:
-                                      Color.fromARGB(117, 23, 23, 74),
+                                      Color.fromARGB(117, 30, 30, 33),
                                   onPressed: () {},
                                   child: const Icon(
                                     Icons.history,
@@ -710,13 +740,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   )),
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                               padding: const EdgeInsets.all(10),
                             ),
                             Container(
-                              color: Color.fromARGB(255, 18, 4, 53),
+                              color: Color.fromARGB(255, 21, 21, 21),
                               height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width / 5,
                             ),
@@ -729,7 +759,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.all(17),
-                                  color: Color.fromARGB(255, 18, 4, 53),
+                                  color: Color.fromARGB(255, 21, 21, 21),
                                   width: MediaQuery.sizeOf(context).width / 1,
                                 ),
                               ],
@@ -744,8 +774,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         children: [
                                           Container(
                                             padding: const EdgeInsets.all(17),
-                                            color: const Color.fromARGB(
-                                                187, 0, 21, 104),
+                                            color:
+                                                Color.fromARGB(255, 21, 21, 21),
                                             width: MediaQuery.sizeOf(context)
                                                 .width,
                                             child: const Text(
@@ -787,7 +817,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
-            color: Color.fromARGB(255, 19, 1, 63),
+            color: Color.fromARGB(255, 21, 21, 21),
             shape: const CircularNotchedRectangle(),
             child: Container(
               height: 58,
@@ -801,10 +831,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       onPressed: _copyText,
                     ),
-                    const IconButton(
-                      icon: Icon(Icons.notes, color: Colors.white),
-                      onPressed: null,
-                    ),
+                    // IconButton(
+                    //   icon: Icon(Icons.notes, color: Colors.white),
+                    //   onPressed: () {
+                    //     setState(() {
+                    //       Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) => Notesapp(
+                    //                     key: Key(''),
+                    //                   )));
+                    //     });
+                    //   },
+                    // ),
                     const IconButton(
                       icon: Icon(
                         Icons.share,
@@ -819,25 +858,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       onPressed: _refreshText,
                     ),
-                    // Container(
-                    //   margin: const EdgeInsets.all(5),
-                    //   child: FloatingActionButton(
-                    //       backgroundColor: const Color.fromARGB(185, 6, 97, 53),
-                    //       onPressed: () {
-                    //         setState(() {
-                    //           Navigator.push(
-                    //               context,
-                    //               MaterialPageRoute(
-                    //                   builder: (context) =>
-                    //                       const ChatScreen()));
-                    //         });
-                    //       },
-                    //       child: Lottie.network(
-                    //           'https://lottie.host/de3aaf0c-2811-4f40-a3f9-48c823065098/RusFq5sBAH.json')
-                    //       // child: Icon(
-                    //       //     Icons.chat_bubble_outline_outlined),
-                    //       ),
-                    // )
                   ]),
             )));
   }
@@ -867,7 +887,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void getRecognisedText(File image) async {
     final inputImage = InputImage.fromFilePath(image.path);
     final textDetector = GoogleMlKit.vision.textRecognizer();
-    // final faceid = GoogleMlKit.vision.faceDetector();
 
     RecognizedText recognizedText = await textDetector.processImage(inputImage);
 

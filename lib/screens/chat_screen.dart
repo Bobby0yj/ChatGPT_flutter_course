@@ -56,7 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
               margin: const EdgeInsets.all(7),
               padding: EdgeInsets.all(5),
               child: FloatingActionButton(
-                  backgroundColor: const Color.fromARGB(185, 6, 97, 53),
+                  backgroundColor: Colors.transparent,
                   onPressed: null,
                   child: Lottie.network(
                       'https://lottie.host/de3aaf0c-2811-4f40-a3f9-48c823065098/RusFq5sBAH.json')),

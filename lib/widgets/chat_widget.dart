@@ -78,8 +78,8 @@ class _ChatWidgetState extends State<ChatWidget>
       children: [
         Material(
           color: widget.chatIndex == 0
-              ? const Color.fromARGB(255, 56, 54, 97)
-              : Colors.white,
+              ? Color.fromARGB(255, 37, 37, 37)
+              : const Color.fromARGB(255, 255, 253, 253),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

@@ -177,7 +177,7 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 18, 4, 53),
+      backgroundColor: Color.fromARGB(255, 27, 28, 28),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -195,8 +195,7 @@ class _SignupState extends State<Signup> {
                 child: const Text(
                   'WELCOME ',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 35),
+                      color: Color.fromARGB(255, 255, 255, 255), fontSize: 35),
                 ),
               ),
               const SizedBox(height: 20),
@@ -204,8 +203,7 @@ class _SignupState extends State<Signup> {
                 child: const Text(
                   'Lets Create Here.....! ',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 15),
+                      color: Color.fromARGB(255, 124, 124, 124), fontSize: 15),
                 ),
               ),
               const SizedBox(height: 40),
@@ -218,7 +216,8 @@ class _SignupState extends State<Signup> {
                       style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         labelText: 'Full Name',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 113, 113, 113)),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -234,7 +233,8 @@ class _SignupState extends State<Signup> {
                       style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         labelText: 'Phone Number',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle:
+                            TextStyle(color: Color.fromARGB(255, 99, 99, 99)),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -249,9 +249,11 @@ class _SignupState extends State<Signup> {
                       style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 123, 123, 123)),
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 225, 225, 225)),
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -265,7 +267,8 @@ class _SignupState extends State<Signup> {
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        labelStyle: const TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(
+                            color: Color.fromARGB(255, 106, 106, 106)),
                         enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -277,7 +280,9 @@ class _SignupState extends State<Signup> {
                             showpassword
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: showpassword ? Colors.white : Colors.grey,
+                            color: showpassword
+                                ? Color.fromARGB(255, 108, 108, 108)
+                                : Colors.grey,
                           ),
                           onPressed: () {
                             setState(() {
@@ -294,19 +299,23 @@ class _SignupState extends State<Signup> {
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: 'Confirm Password',
-                        labelStyle: const TextStyle(color: Colors.white),
+                        labelStyle: const TextStyle(
+                            color: Color.fromARGB(255, 127, 127, 127)),
                         enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 128, 128, 128)),
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
                             showpassword
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: showpassword ? Colors.white : Colors.grey,
+                            color: showpassword
+                                ? const Color.fromARGB(255, 120, 120, 120)
+                                : Colors.grey,
                           ),
                           onPressed: () {
                             setState(() {
@@ -339,7 +348,7 @@ class _SignupState extends State<Signup> {
                           fontSize: 15,
                         ),
                       ),
-                      color: const Color.fromARGB(255, 182, 135, 194),
+                      color: Color.fromARGB(255, 6, 71, 28),
                       minWidth: 300,
                       height: 45,
                     ),
@@ -350,15 +359,17 @@ class _SignupState extends State<Signup> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const LoginScreen(key: Key('value')),
+                              builder: (context) => const LoginScreen(
+                                key: Key('value'),
+                                title: '',
+                              ),
                             ),
                           );
                         },
                         child: const Text(
-                          'Already Have Account? Login',
+                          'Already Have Account?    Login',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 177, 177, 177),
                             fontSize: 15,
                           ),
                         ),
